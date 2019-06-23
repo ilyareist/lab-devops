@@ -1,0 +1,53 @@
+pipeline {
+  environment {
+    registry = "reist/trg"
+    registryCredential = 'dockerhub_cred'
+    dockerImage = ''
+  }
+  agent any
+  triggers {
+    pollSCM '* * * * *'
+    }  
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/ilyareist/lab-devops.git'
+      }
+    }
+    
+    stage('Building image') {
+      steps{
+        script {
+          tag = "latest"
+          dockerImage = docker.build registry + ":" + tag
+        }
+      }
+    }
+    
+    stage('Test') {
+      steps{
+         script {
+            sh "docker run $registry:$tag test"
+        }
+      }
+    }
+
+    
+    stage('Upload Image') {
+      steps{
+         script {
+            docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+        script {
+          sh "docker rmi $registry:$tag"
+        }
+      }
+    }
+  }
+}
