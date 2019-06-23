@@ -12,4 +12,3 @@ case "${1}" in
         exec make ${COMMAND}
         ;;
 esac
-
