@@ -4,12 +4,14 @@
     - name: Create a data container
       docker_container:
         name: flask_app
-        image: reist/trg:5 
-        ports: 8080:8080
+        image: reist/trg:latest
         command: run
     - name: nginx
       docker_container:
         name: nginx
-        image: nginx:1.15-alpine
+        image: nginx:1.17.0-alpine
         ports: 80:80
-        volumes: ./nginx:/etc/nginx/conf.d
+        links:
+          - flask_app
+        volumes: 
+          - /root/work/tgr/lab-devops/ansible/nginx:/etc/nginx/conf.d:ro
