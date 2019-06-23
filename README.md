@@ -2,6 +2,7 @@
 
 >Hello world app using flask
 
+
  - **What principles did you apply?**
    + Self-service configuration
    + Automated provisioning
