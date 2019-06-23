@@ -2,11 +2,6 @@ APP_PORT := $(or ${APP_PORT},${APP_PORT},8080)
 APP_HOST := $(or ${APP_HOST},${APP_HOST},0.0.0.1)
 PYTHONPATH := $(or ${PYTHONPATH},${PYTHONPATH},.)
 
-.PHONY: isort
-isort:
-	@echo -n "Run isort"
-	isort -rc application
-
 
 .PHONY: test
 test:

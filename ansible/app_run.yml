@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: localhost
   tasks:
     - name: Create a data container
       docker_container:
@@ -11,7 +11,9 @@
         name: nginx
         image: nginx:1.17.0-alpine
         ports: 80:80
+        ports: 127.0.0.1:443:443
         links:
           - flask_app
         volumes: 
-          - /root/work/tgr/lab-devops/ansible/nginx:/etc/nginx/conf.d:ro
+          - "{{ lookup('env', 'PWD') }}/nginx:/etc/nginx/conf.d:ro"
+          - "{{ lookup('env', 'PWD') }}/certs:/etc/ssl:ro"
