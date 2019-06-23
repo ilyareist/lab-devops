@@ -1,0 +1,15 @@
+---
+- hosts: all
+  tasks:
+    - name: Create a data container
+      docker_container:
+        name: flask_app
+        image: reist/trg:5 
+        ports: 8080:8080
+        command: run
+    - name: nginx
+      docker_container:
+        name: nginx
+        image: nginx:1.15-alpine
+        ports: 80:80
+        volumes: ./nginx:/etc/nginx/conf.d
