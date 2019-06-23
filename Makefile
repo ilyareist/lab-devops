@@ -18,7 +18,7 @@ test:
 .PHONY: run
 run:
 	@echo -n "Run server "
-	python hello_world.py --host=0.0.0.0:8080
+	python hello_world.py 
 
 .PHONY: help
 help:
