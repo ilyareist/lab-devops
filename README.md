@@ -6,6 +6,7 @@
 * ansible >=2
 * docker >=18.05
 
+---
 
  - **What principles did you apply?**
      + Self-service configuration
