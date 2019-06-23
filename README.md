@@ -9,6 +9,7 @@
      + Continuous build
    
  - **Explain the decisions you made and why you thought it was the best approach**
+     
      I decided to use nginx as a reverse proxy - it will give more flexibility in the future.
  
  - **What is your recommendation for any future work?**
