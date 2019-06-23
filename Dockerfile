@@ -22,5 +22,7 @@ RUN chown -R tgr:tgrgroup /app
 
 USER tgr
 
+EXPOSE 8080
+
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
 CMD ["help"]
