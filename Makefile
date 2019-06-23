@@ -6,9 +6,7 @@ PYTHONPATH := $(or ${PYTHONPATH},${PYTHONPATH},.)
 .PHONY: test
 test:
 	@echo -n "Run tests"
-	flake8 application tests && \
-		isort -rc application tests &&  \
-		py.test -svvv -rs --cov=application --cov-report=term-missing -x
+	flake8 hello_world.py
 
 .PHONY: run
 run:
